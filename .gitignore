@@ -75,3 +75,7 @@ target/
 # Added by cargo
 
 /target
+
+
+# Ignore DevSpace cache and log folder
+.devspace/
