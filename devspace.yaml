@@ -20,7 +20,7 @@ pipelines:
 # We recommend to skip image building during development (devspace dev) as much as possible
 images:
   rust-app:
-    image: k3d-default-registry.localhost/thomask33/devspace-quickstart-rust
+    image: thomask33/devspace-quickstart-rust
     dockerfile: ./Dockerfile
 
 # This is a list of `deployments` that DevSpace can create for this project
@@ -36,7 +36,7 @@ deployments:
       # You may also use `valuesFiles` to load values from files, e.g. valuesFiles: ["values.yaml"]
       values:
         containers:
-          - image: k3d-default-registry.localhost/thomask33/devspace-quickstart-rust
+          - image: thomask33/devspace-quickstart-rust
         service:
           ports:
             - port: 3000
@@ -45,10 +45,9 @@ deployments:
 dev:
   rust-app:
     # Search for the container that runs this image
-    imageSelector: k3d-default-registry.localhost/thomask33/devspace-quickstart-rust
+    imageSelector: thomask33/devspace-quickstart-rust
     # Replace the container image with this dev-optimized image (allows to skip image building during development)
-    # devImage: ghcr.io/loft-sh/devspace-containers/alpine:3
-    devImage: mcr.microsoft.com/devcontainers/rust:latest
+    devImage: ghcr.io/loft-sh/devspace-containers/rust:1.71-alpine
     # Sync files between the local filesystem and the development container
     sync:
       - path: ./
@@ -56,7 +55,7 @@ dev:
     workingDir: /app
     # Open a terminal and use the following command to start it
     terminal:
-      command: "/usr/bin/zsh"
+      command: "/usr/bin/env bash"
     # Inject a lightweight SSH server into the container (so your IDE can connect to the remote dev env)
     ssh:
       enabled: true
@@ -79,11 +78,3 @@ commands:
     command: |-
       echo 'This is a cross-platform, shared command that can be used to codify any kind of dev task.'
       echo 'Anyone using this project can invoke it via "devspace run migrate-db"'
-
-# Define dependencies to other projects with a devspace.yaml
-# dependencies:
-#   api:
-#     git: https://...  # Git-based dependencies
-#     tag: v1.0.0
-#   ui:
-#     path: ./ui        # Path-based dependencies (for monorepos)

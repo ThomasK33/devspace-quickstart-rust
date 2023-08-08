@@ -2,11 +2,12 @@
 name = "devspace-quickstart-rust"
 version = "0.1.0"
 edition = "2021"
+authors = ["Thomas Kosiewski <thoma471@googlemail.com>"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-axum = "0.6.4"
-tokio = { version = "1.25.0", features = ["full"] }
+axum = "0.6.20"
+tokio = { version = "1.29.1", features = ["full"] }
 tracing = "0.1.37"
-tracing-subscriber = "0.3.16"
+tracing-subscriber = "0.3.17"
